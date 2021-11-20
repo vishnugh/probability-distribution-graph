@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+.SliderInputForm {
+  border-style: solid;
+  border-color: #3b3788;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 100px;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.SliderInputForm > Input{
+  width: 50px;
+  height: 20px;
+  margin: 10px;
+  /* text-align: center; */
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 1000px;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}

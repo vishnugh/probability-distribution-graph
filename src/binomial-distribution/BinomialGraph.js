@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer, Brush } from 'recharts';
 import { binomialDistribution, simulateBinomialDistribution } from '../utils/math-utils';
 
 let intervalID = null;
 const TIME_DELAY = 100;
 const NO_OF_SUBITERATION = 10;
+const SHOW_BRUSH_LIMIT = 70;
 
-const BinomialGraph = ({ n = 10, p = 0.5, scaleYaxis = false, showSimulation = false, numberOfIteration = 100 }) => {
+const BinomialGraph = ({ n = 10, p = 0.5, scaleYaxis = false, showSimulation = false, numberOfIteration = 1000 }) => {
 
     const [data, Setdata] = useState(binomialDistribution(n, p));
     const [maxProbability, SetMaxProbability] = useState(1);
@@ -76,16 +77,19 @@ const BinomialGraph = ({ n = 10, p = 0.5, scaleYaxis = false, showSimulation = f
 
 
     return (
-        <BarChart width={900} height={400} data={data}>
+        <ResponsiveContainer width="70%" height={400}>
+        <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="x" />
             <YAxis type="number" yAxisId="left" orientation="left" stroke="#8884d8" domain={[0, scaleYaxis ? 'auto' : 1]} />
             <YAxis type="number" yAxisId="right" orientation="right" stroke="#82ca9d" domain={[0, scaleYaxis ? maxProbability * numberOfIteration : numberOfIteration]} /> 
             <Tooltip />
-            <Legend />
+            <Legend verticalAlign="bottom"/>
             <Bar yAxisId="left" dataKey="p" fill="#8884d8" />
             {showSimulation ? <Bar dataKey="h" yAxisId="right" fill="#82ca9d" /> : null}
+            {n >= SHOW_BRUSH_LIMIT ? <Brush dataKey="x" height={30} stroke="#8884d8" /> : null}
         </BarChart>
+        </ResponsiveContainer>
     );
 }
 

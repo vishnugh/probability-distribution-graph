@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import BinomialHome from './binomial-distribution/BinomialHome';
 
 function App() {
