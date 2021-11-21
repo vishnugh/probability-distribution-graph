@@ -63,6 +63,7 @@ const BinomialGraph = ({ n = 10, p = 0.5, scaleYaxis = false, showSimulation = f
         return () => {
             clearInterval(intervalID);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showSimulation])
 
 
