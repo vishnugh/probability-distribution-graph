@@ -1,9 +1,10 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 
 const SimulationBox = ({numberOfIteration, onChange, showSimulation, onSimulate, n, p}) => {
     return (<div className="SliderInputForm">
         Number of Iterations: <input type="number"  min={0} max={1000000} step={1} onChange={onChange} value={numberOfIteration}/>
-        <button disabled={showSimulation} onClick={onSimulate}>Simulate</button>
+        <Button disabled={showSimulation} onClick={onSimulate}>Simulate</Button>
         {showSimulation ? `Tossing ${n} coins with probability of Heads = ${p} ${numberOfIteration} times...`: null}
         </div>
         );

@@ -6,7 +6,7 @@ const SliderInputForm = ({ min = 0, max = 1, step = 0.01, onChange = () => { }, 
             {title ? title : null}
             <div>
                 <span>{min}</span>
-                <input type="range" min={min} max={max} step={step} onChange={onChange} value={value} />
+                    <input type="range" style={{display:"inline"}} min={min} max={max} step={step} onChange={onChange} value={value} />
                 <span>{max}</span>
             </div>
             {/* <label htmlFor="slider" >{value}</label> */}

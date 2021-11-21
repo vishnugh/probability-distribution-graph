@@ -77,16 +77,39 @@ const BinomialGraph = ({ n = 10, p = 0.5, scaleYaxis = false, showSimulation = f
 
 
     return (
-        <ResponsiveContainer width="70%" height={400}>
-        <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+        <ResponsiveContainer width="100%" height={500}>
+        <BarChart data={data} margin={{ top: 60, right: 30, left: 0, bottom: 40 }}>
+            <defs>
+                <linearGradient
+                id="main"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="100%"
+                spreadMethod="reflect">
+                <stop offset="0" stopColor="#8F75FF" />
+                <stop offset="1" stopColor="#B721FF" />
+                </linearGradient>
+
+                <linearGradient
+                id="simulate"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="100%"
+                spreadMethod="reflect">
+                <stop offset="0" stopColor="#85FFBD" />
+                <stop offset="1" stopColor="#CBFD9B" />
+                </linearGradient>
+            </defs>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="x" />
             <YAxis type="number" yAxisId="left" orientation="left" stroke="#8884d8" domain={[0, scaleYaxis ? 'auto' : 1]} />
             <YAxis type="number" yAxisId="right" orientation="right" stroke="#82ca9d" domain={[0, scaleYaxis ? maxProbability * numberOfIteration : numberOfIteration]} /> 
             <Tooltip />
             <Legend verticalAlign="bottom"/>
-            <Bar yAxisId="left" dataKey="p" fill="#8884d8" />
-            {showSimulation ? <Bar dataKey="h" yAxisId="right" fill="#82ca9d" /> : null}
+            <Bar yAxisId="left" dataKey="p" fill="url(#main)" />
+            {showSimulation ? <Bar dataKey="h" yAxisId="right" fill="url(#simulate)" /> : null}
             {n >= SHOW_BRUSH_LIMIT ? <Brush dataKey="x" height={30} stroke="#8884d8" /> : null}
         </BarChart>
         </ResponsiveContainer>
