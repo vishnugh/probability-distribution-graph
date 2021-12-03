@@ -45,6 +45,9 @@ const BinomialHome = () => {
     const onSimulate = () => {
         setShowSimulation(true);
     }
+    const resetSimulation = () => {
+        setShowSimulation(false);
+    }
 
     return (<>
         <h1>Binomial Distribution</h1>
@@ -64,7 +67,7 @@ const BinomialHome = () => {
                         <input className="form-check-input" type="checkbox" onChange={() => setShowNormalAproximation(!showNormalAproximation)} />
                     </div>
                 </div>
-                <SimulationBox numberOfIteration={numberOfIteration} onChange={OnNumberOfIterationsChange} showSimulation={showSimulation} onSimulate={onSimulate} n={n} p={p} />
+                <SimulationBox numberOfIteration={numberOfIteration} onChange={OnNumberOfIterationsChange} showSimulation={showSimulation} onSimulate={onSimulate} resetSimulation={resetSimulation} n={n} p={p} />
             </div>
             <div style={{ margin: "5rem", width: "60%", background: "white", borderRadius: "15px", boxShadow: "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px" }}>
                 <Graph n={n} p={p} scaleYaxis={scaleYaxis} showSimulation={showSimulation} numberOfIteration={numberOfIteration} showNormalAproximation={showNormalAproximation} />
