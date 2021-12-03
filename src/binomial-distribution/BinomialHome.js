@@ -13,6 +13,7 @@ const BinomialHome = () => {
     const [scaleYaxis, setScaleYaxis] = useState(false);
     const [showSimulation, setShowSimulation] = useState(false);
     const [numberOfIteration, setNumberOfIterations] = useState(1000);
+    const [showNormalAproximation, setShowNormalAproximation] = useState(false);
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const BinomialHome = () => {
 
     const OnNumberOfIterationsChange = (e) => {
         setShowSimulation(false);
-        if(e.target.value >=0 && e.target.value <= 1000000){
+        if (e.target.value >= 0 && e.target.value <= 1000000) {
             setNumberOfIterations(parseFloat(e.target.value));
         }
     }
@@ -46,22 +47,27 @@ const BinomialHome = () => {
     }
 
     return (<>
-        <h1>Binomial Distibution</h1>
+        <h1>Binomial Distribution</h1>
         <div className="grid-row">
             <div className="form-col">
-                <SliderInputForm onChange={OnSliderChange} id="slider" value={p} min={0} max={1} step={0.01} title="p: Probability of Success" />
-                <SliderInputForm onChange={OnNchange} value={n} min={0} max={150} step={1} title="n: Number of Trials" />
-                <SimulationBox numberOfIteration={numberOfIteration} onChange={OnNumberOfIterationsChange} showSimulation={showSimulation} onSimulate={onSimulate} n={n} p={p}/>
                 <div className="SliderInputForm">
-                    Scale Y Axis: 
-                    <div className="form-check form-switch"> 
-                    <input className="form-check-input" type="checkbox" onChange={() => setScaleYaxis(!scaleYaxis)} />
-                    
+                    Scale Y Axis:
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" onChange={() => setScaleYaxis(!scaleYaxis)} />
                     </div>
                 </div>
+                <SliderInputForm onChange={OnSliderChange} id="slider" value={p} min={0} max={1} step={0.01} title="p: Probability of Success" />
+                <SliderInputForm onChange={OnNchange} value={n} min={0} max={150} step={1} title="n: Number of Trials" />
+                <div className="SliderInputForm">
+                    Show Normal Approximation:
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" onChange={() => setShowNormalAproximation(!showNormalAproximation)} />
+                    </div>
+                </div>
+                <SimulationBox numberOfIteration={numberOfIteration} onChange={OnNumberOfIterationsChange} showSimulation={showSimulation} onSimulate={onSimulate} n={n} p={p} />
             </div>
-            <div style={{margin:"5rem", width:"60%", background:"white", borderRadius:"15px", boxShadow: "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px"}}>
-                <Graph n={n} p={p} scaleYaxis={scaleYaxis} showSimulation={showSimulation} numberOfIteration={numberOfIteration}/>
+            <div style={{ margin: "5rem", width: "60%", background: "white", borderRadius: "15px", boxShadow: "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px" }}>
+                <Graph n={n} p={p} scaleYaxis={scaleYaxis} showSimulation={showSimulation} numberOfIteration={numberOfIteration} showNormalAproximation={showNormalAproximation} />
             </div>
         </div>
         {/* <input type="checkbox" onChange={() => setShowSimulation(!showSimulation)} /> */}
